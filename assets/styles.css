@@ -824,7 +824,7 @@ body {
   background-color: var(--dot-bg);
   border-radius: 50%;
 }
-
+/*active dot*/
 .testimnial-dots .dot-active {
   background-color: var(--dot-active-bg);
 }
