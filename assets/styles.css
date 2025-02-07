@@ -23,7 +23,7 @@
 :root {
   /* 🌟 Navigation */
   --nav-bg: #0B9586;
-  --nav-item-border: rgba(0, 0, 0, 0.3);
+  --nav-item-border: #0000004d;
   --nav-shadow: #3b3a3a;
 
   /* 🌟 Text Colors */
@@ -32,7 +32,7 @@
   --text-muted: #475467;
   --text-highlight: #84BD3A;
   --text-success: #3CAB90;
-  --text-light-dark: #1c1c1c;/*!!*/
+  --text-light-dark: #1c1c1c;
 
   /* 🌟 Typography */
   --font-primary: "Inter", sans-serif;
@@ -49,21 +49,18 @@
   --slider-bg: #575757;
 
   /* 🌟 Section Backgrounds */
-  --section-overlay-bg: rgba(0, 0, 0, 0.57);
+  --section-overlay-bg: #00000091;
   --card-bg: #3CAB900D;
-  --section-highlight-bg: rgba(60, 171, 144, 0.06);
-  --energy-bg: rgba(255, 187, 28, 0.08);
+  --section-highlight-bg: #3cab900f;
+  --energy-bg: #ffbb1c14;
 
   /* 🌟 Responsive Font Scaling */
-  --font-size-responsive-heading: clamp(1.8rem, 3vw, 3.6rem);
-  --font-size-responsive-brief: clamp(1rem, 1vw, 1.25rem);
+  --font-size-responsive-heading: clamp(1.8rem, 4vw, 3.6rem);
+  --font-size-responsive-brief: clamp(1rem, 2vw, 1.25rem);
 
   /* 🌟 Borders & Lines & shadows */
   --border-primary: #B3BDC7;
-  --border-divider: #71777D;
-  --border-light: #92989F;/*!!*/
   --box-card-shadow: #0000000D;
-
 
   /*Spacing*/
   --line-height: 1.5;
@@ -71,8 +68,7 @@
   /* 🌟 Footer */
   --footer-bg: #283646;
   --footer-text: #92989F;
-  --footer-divider: #71777D; /*!!*/
-  --footer-email-border: #B3BDC7; /*!!*/
+  --footer-divider: #71777D;
 }
 
 
@@ -196,7 +192,7 @@ body {
 .bg-solar {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.26) 100%), no-repeat -450px 70px/cover url('./images/solar-panels-meadow-1.png');
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.26) 100%), no-repeat 100% 70px/cover url('./images/solar-panels-meadow-1.png');
 }
 
 /*slider pagination*/
@@ -550,7 +546,7 @@ body {
   color: var(--text-primary);
   font-size: var(--font-size-responsive-heading);
   margin-bottom: 25px;
-  white-space: nowrap;
+  white-space: break-spaces;
 }
 
 /*repairs introduction*/
@@ -965,6 +961,9 @@ body {
 }
 
 /* footer subscripe input */
+.visually-hidden {
+  display: none;
+}
 .footer-top__subscribe-input {
   width: 100%;
   height: 35px;
@@ -1000,7 +999,7 @@ body {
 .divider {
   width: 100%;
   height: 1px;
-  border: 1px solid var(--border-divider);
+  border: 1px solid var(--footer-divider);
 }
 
 /*footer bottom*/
@@ -1431,9 +1430,4 @@ body {
   .testimnial-slider__bottom-section .chevrons {
     gap: 16px;
   }
-}
-
-@media only screen and (min-width: 1536px) {
-
-  /* Styles for large desktops and wide screens */
 }
