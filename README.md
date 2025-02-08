@@ -33,7 +33,13 @@ Users should be able to:
 
 ### Screenshot
 
-![screenshot](/assets/images/screenshot.png)
+#### Desktop
+
+![screenshot desktop](/assets/images/screenshot.png)
+
+#### Mobile
+
+![screenshot mobile](/assets/images/screenshot-2.png)
 
 ### Links
 
