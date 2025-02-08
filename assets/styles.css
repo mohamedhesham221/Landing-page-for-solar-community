@@ -1,0 +1,1439 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+/* Custom font import */
+@font-face {
+  font-family: 'Akazan', serif;
+  /* Ensure the font is correctly referenced */
+  src: url('./fonts/Akazan/Regular.ttf');
+  /* Verify the font path is correct */
+  font-weight: 700;
+}
+
+/* Reset default browser spacing */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Define CSS variables */
+:root {
+  /* 🌟 Navigation */
+  --nav-bg: #0B9586;
+  --nav-item-border: rgba(0, 0, 0, 0.3);
+  --nav-shadow: #3b3a3a;
+
+  /* 🌟 Text Colors */
+  --text-primary: #FFFFFF;
+  --text-dark: #101828;
+  --text-muted: #475467;
+  --text-highlight: #84BD3A;
+  --text-success: #3CAB90;
+  --text-light-dark: #1c1c1c;/*!!*/
+
+  /* 🌟 Typography */
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Akazan", sans-serif;
+  --font-third: "Plus Jakarta Sans", sans-serif;
+
+  /* 🌟 Buttons */
+  --btn-primary-bg: #3CAB90;
+  --btn-primary-hover: #2E8B7D;
+  --btn-secondary-bg: #FFBB1C;
+  --btn-secondary-hover: #E5A913;
+  --dot-bg: #D9D9D9;
+  --dot-active-bg: #6B6B6B;
+  --slider-bg: #575757;
+
+  /* 🌟 Section Backgrounds */
+  --section-overlay-bg: rgba(0, 0, 0, 0.57);
+  --card-bg: #3CAB900D;
+  --section-highlight-bg: rgba(60, 171, 144, 0.06);
+  --energy-bg: rgba(255, 187, 28, 0.08);
+
+  /* 🌟 Responsive Font Scaling */
+  --font-size-responsive-heading: clamp(1.8rem, 3vw, 3.6rem);
+  --font-size-responsive-brief: clamp(1rem, 1vw, 1.25rem);
+
+  /* 🌟 Borders & Lines & shadows */
+  --border-primary: #B3BDC7;
+  --border-divider: #71777D;
+  --border-light: #92989F;/*!!*/
+  --box-card-shadow: #0000000D;
+
+
+  /*Spacing*/
+  --line-height: 1.5;
+
+  /* 🌟 Footer */
+  --footer-bg: #283646;
+  --footer-text: #92989F;
+  --footer-divider: #71777D; /*!!*/
+  --footer-email-border: #B3BDC7; /*!!*/
+}
+
+
+/* Set base font and layout properties */
+
+html {
+  font-size: 16px;
+  font-family: var(--font-primary);
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  /* Ensure navbar stays above other content */
+  width: 100%;
+  max-height: 70px;
+  background-color: var(--nav-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+  overflow-y: hidden;
+  box-shadow: 0 0 15px 0 var(--nav-shadow);
+  transition: max-height 0.4s ease-in-out;
+}
+
+/* Navbar logo */
+.navbar__logo {
+  width: 100%;
+}
+
+.navbar__logo img {
+  max-width: 100%;
+  width: 100px;
+  height: 30px;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+
+/* Navbar toggle button */
+
+.navbar__checkbox {
+  display: none;
+}
+
+.navbar__hamburger {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 21px;
+  right: 20px;
+  z-index: 9999;
+  border: 1px solid var(--text-primary);
+  border-radius: 5px;
+  padding: 3px;
+  cursor: pointer;
+  color: var(--text-primary);
+  font-size: 20px;
+}
+
+.navbar__checkbox:checked~.navbar {
+  /*expend navbar when checkbox checked*/
+  max-height: 300px;
+}
+
+/*navbar menu*/
+.navbar__container-menu {
+  width: 100%;
+}
+
+.navbar__menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+  list-style: none;
+}
+.navbar__item {
+  padding: 8px;
+  border-radius: 5px;
+}
+.navbar__item:first-child {
+  border-bottom: 3px solid #0000004D;
+  background: #0000000F;
+}
+
+.navbar__item a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.25rem;
+
+}
+
+/*navbar contact*/
+.navbar__contact {
+  width: 100%;
+  color: var(--text-primary);
+  text-align: start;
+}
+
+.navbar__contact-label {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+/*solar panel section*/
+.bg-solar {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.26) 100%), no-repeat -450px 70px/cover url('./images/solar-panels-meadow-1.png');
+}
+
+/*slider pagination*/
+.slider {
+  position: absolute;
+  top: 80px;
+  left: 35px;
+  z-index: 0;
+  width: 180px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-number {
+  color: var(--text-primary);
+  font: normal 400 18px / var(--line-height) var(--font-secondary);
+  letter-spacing: 0.94px;
+}
+
+.slider-bar {
+  width: 100%;
+  height: 3px;
+  border-radius: 10px;
+  background: var(--slider-bg);
+}
+
+.slider-bar--active {
+  width: 35%;
+  height: inherit;
+  border-radius: inherit;
+  background: #FFFFFF;
+}
+
+.solar-panel {
+  position: absolute;
+  top: 150px;
+  left: 35px;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Solar panel heading */
+.solar-panel__head {
+  color: var(--text-primary);
+  font-size: clamp(2rem, 6vw, 4rem);
+  /* Ensures responsiveness */
+}
+
+/*solar panel introduction*/
+.solar-panel__introduction {
+  color: var(--text-primary);
+  font-size: var(--font-size-responsive-brief);
+  line-height: var(--line-height);
+}
+
+/* Button group styling */
+.solar-panel__group-btns {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.solar-panel__group-btns button {
+  min-width: 100px;
+  height: 31px;
+  border: none;
+  outline: none;
+  border-radius: 109px;
+  font-size: 10px;
+  padding: 5px 20px;
+  letter-spacing: 0.08em;
+}
+
+.solar-panel__group-btns button:first-child {
+  background-color: var(--btn-primary-bg);
+  color: var(--text-primary);
+}
+
+.solar-panel__group-btns button:last-child {
+  background-color: var(--btn-secondary-bg);
+}
+
+/*friendlist section*/
+.bg-friendlist {
+  width: 100%;
+  min-height: 100vh;
+  padding: 50px 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.friendlist-installers {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/*Friendlist heading*/
+.friendlist-installers__head {
+  color: var(--text-dark);
+  font-size: var(--font-size-responsive-heading);
+  font-weight: 600;
+}
+
+/*Friendlist introduction*/
+.friendlist-installers__introduction {
+  color: var(--text-dark);
+  font-size: var(--font-size-responsive-brief);
+  font-weight: 400;
+  line-height: var(--line-height);
+}
+
+/*Friendlist services*/
+.friendlist-installers__services {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Friendlist services item */
+.friendlist-installers__services-item {
+  color: var(--text-dark);
+  font-size: clamp(.9rem, 1.5vw, 2rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/*Friendlist services highlight*/
+.friendlist-installers__services-item--highlight {
+  color: var(--text-highlight);
+  font-family: var(--font-secondary);
+  letter-spacing: 4px;
+  font-weight: 700;
+}
+
+/* friendlist__installers-images */
+.friendlist-installers__image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.friendlist-installers__image-container__image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  aspect-ratio: 3 / 2;
+}
+
+.friendlist-installers__image-supercharge {
+  position: absolute;
+  bottom: 8px;
+  left: 50px;
+  z-index: 0;
+  width: 100px;
+  height: 80px;
+  background-color: var(--btn-secondary-bg);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.friendlist-installers__image-supercharge--img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.friendlist-installers__image-supercharge--paragraph {
+  font-size: 8px;
+  color: var(--text-dark);
+}
+
+/*Power section*/
+.bg-power__section {
+  width: 100%;
+  height: 100vh;
+  background: no-repeat 75%/cover url('./images/windmill.png');
+  position: relative;
+}
+
+.power-section {
+  position: absolute;
+  top: 150px;
+  left: 35px;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/*Power section heading*/
+.power-section__heading {
+  color: var(--text-primary);
+  font-size: var(--font-size-responsive-heading);
+  font-weight: 600;
+}
+
+/*Power secion introduction*/
+.power-section__introduction {
+  color: var(--text-primary);
+  font-size: var(--font-size-responsive-brief);
+  font-weight: 400;
+  line-height: var(--line-height);
+}
+
+/*Power section btn*/
+.power-section__btn {
+  width: fit-content;
+  height: 31px;
+  border: none;
+  outline: none;
+  border-radius: 109px;
+  font-size: 10px;
+  padding: 5px 20px;
+  letter-spacing: 0.08em;
+  background-color: var(--btn-secondary-bg);
+}
+
+/*Solar container styling*/
+.solar-kits__container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--text-primary);
+  display: grid;
+  place-content: center;
+  padding: 35px;
+}
+
+.solar-kits {
+  text-align: center;
+}
+
+/*Solar kits heading*/
+.solar-kits__heading {
+  color: var(--text-dark);
+  font-size: var(--font-size-responsive-heading);
+  font-weight: 600
+}
+
+/*Solar kits introduction*/
+.solar-kits__introduction {
+  color: var(--text-muted);
+  font-size: var(--font-size-responsive-brief);
+  font-weight: 400;
+  line-height: var(--line-height);
+  margin-top: 15px;
+}
+
+/*Solar kits cards*/
+.solar-kits__cards {
+  width: 100%;
+  height: fit-content;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: left;
+}
+
+/*Solar kits card*/
+.solar-kits__cards__card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  box-shadow: 0px 4px 30px 0px var(--box-card-shadow);
+  padding-bottom: 20px;
+}
+
+/*Solar kits product image*/
+.solar-kits__cards__card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/*Solar card title*/
+.solar-kits__cards__card-title {
+  color: var(--text-dark);
+  font-size: clamp(1rem, 2vw, 2rem);
+  font-weight: 600;
+}
+
+/*Solar card brief*/
+.solar-kits__cards__card-brief {
+  color: var(--text-muted);
+  line-height: var(--line-height);
+  font-size: clamp(.5rem, 1vw, 1.5rem);
+}
+
+/*Solar card view products links*/
+
+.solar-kits__cards__card-products-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--text-success);
+  font-size: clamp(.8rem, 1vw, 2rem);
+}
+
+.solar-kits__cards__card-title,
+.solar-kits__cards__card-brief,
+.solar-kits__cards__card-products-view {
+  padding-left: 25px;
+}
+
+.solar-kits__cards__card-products-view img {
+  width: 12px;
+  height: auto;
+}
+
+/*repairs section*/
+.bg__repairs {
+  width: 100%;
+  height: 100vh;
+  background: no-repeat center/cover url('./images/repairs.png');
+  display: grid;
+  place-content: center;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.repairs-section {
+  width: fit-content;
+  height: fit-content;
+  padding: 25px;
+  background: var(--section-overlay-bg);
+  backdrop-filter: blur(24px);
+  text-align: center;
+  border-radius: 12px;
+}
+
+/*repairs heading*/
+.repairs-section__heading {
+  color: var(--text-primary);
+  font-size: var(--font-size-responsive-heading);
+  margin-bottom: 25px;
+  white-space: nowrap;
+}
+
+/*repairs introduction*/
+.repairs-section__introduction {
+  color: var(--text-primary);
+  font-size: var(--font-size-responsive-brief);
+  line-height: var(--line-height);
+}
+
+/*Energy innovators section*/
+.energy-inovators {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--energy-bg);
+  padding: 45px 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.energy-inovators__section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+/* Energy image */
+.energy-inovators__image {
+  width: 40px;
+  height: auto;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: var(--text-success);
+  outline: 6px solid #3CAB9026;
+}
+
+/* Energy heading */
+.energy-inovators__heading {
+  color: var(--text-dark);
+  font-size: var(--font-size-responsive-heading);
+  font-weight: 600;
+}
+
+/* Energy brief */
+.energy-inovators__introduction {
+  color: var(--text-muted);
+  line-height: var(--line-height);
+  font-size: var(--font-size-responsive-brief);
+}
+
+/*Energy articles*/
+.energy-inovators__articles {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+/*Energy article*/
+.energy-inovators__articles__article {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid var(--text-success);
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 12px;
+}
+
+/*article thumbnail*/
+.thumbnail-container {
+  width: 100%;
+  height: 100px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  background: #3cab902b;
+  border-radius: 12px;
+}
+
+.thumbnail {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: luminosity;
+}
+
+/*article heading*/
+.article__heading {
+  width: 100%;
+  color: var(--text-dark);
+  font-size: clamp(1em, 1.5vw, 3em);
+  font-weight: 600;
+}
+
+/*article brief*/
+.article__brief {
+  width: 100%;
+  color: var(--text-muted);
+  font-size: .8rem;
+  line-height: var(--line-height);
+}
+
+.article__brief u {
+  text-decoration-skip-ink: none;
+}
+
+/*article view integration*/
+.article__view-integration {
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  font-size: clamp(.8em, 1vw, 2em);
+  color: var(--text-success);
+}
+
+/*value section*/
+.value-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 45px 35px;
+}
+
+/*value section header*/
+.value-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  line-height: var(--line-height);
+  text-align: center;
+}
+
+/*value section heading*/
+.value-section__header__heading {
+  color: var(--text-dark);
+  font-size: var(--font-size-responsive-heading);
+  font-weight: 600;
+}
+
+/*value section introduction*/
+.value-section__header__introduction {
+  color: var(--text-muted);
+  line-height: var(--line-height);
+  font-size: var(--font-size-responsive-brief);
+}
+
+/*value section cards container*/
+.value-section__container {
+  width: 100%;
+  max-height: fit-content;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* value card */
+.value-section__card {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid var(--text-success);
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 12px;
+}
+
+/* value card icon*/
+.value-section__card__icon {
+  max-width: 100%;
+  width: 55px;
+  height: auto;
+}
+
+/* value card heading*/
+.value-section__card__heading {
+  color: var(--text-dark);
+  font-size: clamp(1em, 2vw, 2em);
+}
+
+/* value card brief*/
+.value-section__card__brief {
+  width: 100%;
+  color: var(--text-muted);
+  font-size: .8rem;
+  line-height: var(--line-height);
+}
+
+/*testimonial section*/
+.testimnial-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 45px 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+}
+
+/*testimonial section header*/
+.testimnial-section header {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* testimonial section qoute*/
+.testimnial-section__qoute {
+  width: 60px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* testimonial section heading */
+.testimnial-section__heading {
+  color: var(--text-light-dark);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+}
+
+/* testimonial section introduction*/
+.testimnial-section__introduction {
+  color: var(--text-light-dark);
+  font-size: var(--font-size-responsive-brief);
+  line-height: var(--line-height);
+}
+
+.testimnial-slider {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: var(--section-highlight-bg);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/*testimonial top section header*/
+.testimnial-slider__top-section header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-third);
+  font-weight: 700;
+}
+
+/*testimonial top section heading*/
+.testimnial-slider__top-section header h5 {
+  color: var(--text-success);
+  font-size: 1rem;
+}
+
+/*testimonial dots*/
+.testimnial-dots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3px;
+}
+
+.testimnial-dots .dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--dot-bg);
+  border-radius: 50%;
+}
+
+.testimnial-dots .dot-active {
+  background-color: var(--dot-active-bg);
+}
+
+/*testimonial qoute*/
+.testimnial-qoute {
+  color: var(--text-dark);
+  font-size: normal 400 clamp(1rem, 4vw, 2rem)/var(--line-height) var(--font-primary);
+}
+
+/*testimonial bottom section*/
+.testimnial-slider__bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.testimnial-slider__bottom-section .client-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+/* client profile */
+.client-profile__name-role {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: var(--text-light-dark);
+  font: normal normal .7rem/var(--line-height) var(--font-primary);
+}
+
+.client-profile__name-role__name {
+  font-weight: 700;
+}
+
+.client-profile__name-role__role {
+  font-weight: 400;
+}
+
+/* testimnial chevrons */
+.testimnial-slider__bottom-section .chevrons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.testimnial-slider__bottom-section .chevrons img {
+  border: 1px solid var(--text-light-dark);
+  border-radius: 50%;
+}
+
+.testimnial-slider__bottom-section .chevrons img:last-child {
+  transform: rotateY(180deg);
+}
+
+/*Footer*/
+.footer {
+  width: 100%;
+  min-height: 100%;
+  background: var(--footer-bg);
+  padding: 45px 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+/*footer top section*/
+.footer-top {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/*footer logo & navigation section*/
+.footer-top__logo__navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
+}
+
+/* footer logo img */
+.footer-top__logo__navigation img {
+  width: 165px;
+  height: 64px;
+  mix-blend-mode: luminosity;
+  object-fit: contain;
+}
+
+/*footer logo navigations*/
+.footer-top__navigation ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  font: normal 400 1rem/var(--line-height) var(--font-primary);
+}
+
+/*footer logo navigations item*/
+.footer-top__navigation__item {
+  font-family: var(--font-primary);
+  letter-spacing: 0.3px;
+}
+
+.footer-top__navigation__item a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+/* footer subscripe */
+.footer-top__subscribe {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+.footer-top__subscribe__message {
+  color: var(--text-primary);
+  font-size: var(--font-size-responsive-brief);
+  opacity: .8;
+}
+
+/* footer subscripe input */
+.footer-top__subscribe-input {
+  width: 100%;
+  height: 35px;
+  border-radius: 38px;
+  border: 1px solid var(--border-primary);
+  background: var(--footer-text);
+  padding-left: 20px;
+  color: var(--text-primary);
+}
+
+/* footer subscripe input placeholder */
+.footer-top__subscribe-input::placeholder {
+  color: var(--text-primary);
+  opacity: .5;
+}
+
+/* footer subscripe button */
+.footer-top__subscribe-button {
+  width: 147px;
+  height: inherit;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--btn-secondary-bg);
+  color: var(--text-primary);
+  padding: 10px 17px;
+  border-radius: 109px;
+  outline: none;
+  border: none;
+}
+
+/*divider*/
+.divider {
+  width: 100%;
+  height: 1px;
+  border: 1px solid var(--border-divider);
+}
+
+/*footer bottom*/
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+/*footer links*/
+.footer-bottom__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-bottom__links__link a {
+  color: var(--footer-text);
+  text-decoration: none;
+  font-size: .7rem;
+}
+
+/*footer copyright*/
+.footer-bottom__copyright {
+  font-size: .7rem;
+  color: var(--footer-text);
+}
+
+/*Media Queries*/
+@media only screen and (min-width: 640px) {
+
+  /* Styles for small phones */
+  .slider {
+    top: 120px;
+    left: 70px;
+  }
+
+  .solar-panel {
+    top: 200px;
+    left: 70px;
+  }
+
+  .friendlist-installers__image-supercharge {
+    width: 180px;
+    height: 150px;
+  }
+
+  .friendlist-installers__image-supercharge--img {
+    margin-bottom: 15px;
+  }
+
+  .friendlist-installers__image-supercharge--paragraph {
+    font-size: 12px;
+  }
+
+  .power-section {
+    left: 70px;
+  }
+
+  .friendlist-installers__image-supercharge--img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .navbar,
+  .solar-kits__container,
+  .bg__repairs,
+  .bg-friendlist,
+  .energy-inovators,
+  .value-section,
+  .testimnial-container {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+
+  .energy-inovators__articles__article {
+    padding: 24px;
+  }
+
+  .footer-top__subscribe {
+    width: calc(100% - 200px);
+  }
+
+  .footer-top__logo__navigation img {
+    width: 185px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+
+  /* Styles for larger phones and small tablets */
+
+  .navbar {
+    padding: 8px 70px;
+  }
+
+  .navbar__logo img {
+    width: 25%;
+    height: 54px;
+    object-fit: fill;
+  }
+
+  .slider {
+    width: 300px;
+    top: 155px;
+    left: 100px;
+  }
+
+  .solar-panel {
+    top: 261px;
+    width: 570px;
+    left: 100px;
+
+  }
+
+  .solar-panel__group-btns button,
+  .power-section__btn {
+    width: 174px;
+    height: 41px;
+    font-size: 12px;
+  }
+
+  .solar-kits__container,
+  .bg__repairs,
+  .bg-friendlist,
+  .energy-inovators,
+  .value-section,
+  .testimnial-container,
+  .footer {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+
+  .friendlist-installers__image-supercharge {
+    width: 266px;
+    height: 208px;
+    bottom: 25px;
+    left: -50px;
+    padding: 24px 30px;
+  }
+
+  .friendlist-installers__image-container__image {
+    aspect-ratio: unset;
+  }
+
+  .friendlist-installers__image-supercharge--img {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 25px;
+  }
+
+  .friendlist-installers__image-supercharge--paragraph {
+    font-size: 18px;
+  }
+
+  .power-section {
+    left: 100px;
+  }
+
+  .solar-kits__cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .solar-kits__cards__card,
+  .value-section__card {
+    width: 45%;
+  }
+
+  .value-section__card {
+    height: 420px;
+  }
+
+  .energy-inovators__image {
+    width: 56px;
+  }
+
+  .energy-inovators__articles,
+  .value-section__container {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .energy-inovators__articles__article {
+    width: 45%;
+  }
+
+  .value-section__container {
+    align-items: flex-start;
+  }
+
+  .value-section__card__brief {
+    font-size: .9rem;
+  }
+
+  .testimnial-qoute {
+    font-size: 2rem;
+  }
+
+  .footer-top__logo__navigation img {
+    width: 185px;
+    object-fit: fill;
+  }
+
+  .footer-top__subscribe {
+    width: calc(100% - 200px);
+  }
+
+  .footer-top__subscribe__message,
+  .footer-bottom__links__link a,
+  .footer-bottom__copyright {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+
+  /* Styles for tablets and small laptops */
+  .navbar__hamburger {
+    display: none;
+  }
+
+  .navbar {
+    height: 86px;
+    max-height: unset;
+  }
+
+  .navbar,
+  .navbar__menu {
+    flex-direction: row;
+    align-items: center;
+  }
+  .navbar__item:hover {
+    backdrop-filter: blur(20);
+    border-bottom: 3px solid #0000004D;
+    background: #0000000F;
+  }
+  .navbar__logo,
+  .navbar__contact {
+    width: 25%;
+    text-align: end;
+  }
+
+  .navbar__contact-label {
+    font-size: 18px;
+  }
+
+  .navbar__contact-number {
+    font-size: 1.5rem;
+  }
+
+  .navbar__logo img {
+    width: 100%;
+  }
+
+  .navbar__menu {
+    justify-content: space-evenly;
+  }
+
+  .bg-solar {
+    background-position: center;
+  }
+
+  .slider,
+  .solar-panel {
+    left: 150px;
+  }
+
+  .solar-panel {
+    width: 729px;
+  }
+
+  .solar-panel__group-btns button,
+  .power-section__btn {
+    width: 208px;
+    padding: 12px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+  }
+
+  .solar-panel__group-btns button:first-child:hover {
+    color: var(--btn-primary-hover);
+    background: var(--text-primary);
+  }
+  .solar-panel__group-btns button:last-child:hover,
+  .power-section__btn:hover {
+    color: var(--btn-secondary-hover);
+    background: var(--text-light-dark);
+  }
+
+  .solar-kits__container,
+  .bg__repairs,
+  .bg-friendlist,
+  .energy-inovators,
+  .value-section,
+  .testimnial-container,
+  .footer {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+
+  .friendlist-installers__image-container__image {
+    aspect-ratio: 3 / 2;
+  }
+
+  .friendlist-installers__image-supercharge {
+    left: 90px;
+  }
+
+  .power-section {
+    top: 261px;
+  }
+
+  .value-section__card__brief {
+    line-height: 1.8;
+  }
+
+  .footer {
+    min-height: unset;
+    height: 300px;
+  }
+
+  .footer-top,
+  .footer-top__navigation ul {
+    flex-direction: row;
+  }
+
+  .footer-top {
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .footer-top__logo__navigation {
+    width: 60%;
+  }
+
+  .footer-top__subscribe {
+    width: 40%;
+  }
+
+  .footer-top__subscribe-button {
+    width: 115px;
+  }
+
+  .footer-bottom {
+    width: 100%;
+  }
+
+  .footer-bottom,
+  .footer-bottom__links {
+    flex-direction: row;
+  }
+
+  .footer-bottom__links__link a,
+  .footer-bottom__copyright {
+    font-size: .8rem;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+
+  /* Styles for laptops and medium-sized screens */
+  .bg-friendlist {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 23px;
+  }
+
+  .friendlist-installers,
+  .friendlist-installers__image-container {
+    width: 45%;
+  }
+
+  .friendlist-installers__image-container__image {
+    aspect-ratio: unset;
+  }
+
+  .friendlist-installers__image-supercharge {
+    left: -60px;
+  }
+
+  .power-section {
+    top: 200px;
+    left: 150px;
+  }
+
+  .solar-kits__cards {
+    flex-wrap: nowrap;
+  }
+
+  .repairs-section {
+    width: 858px;
+    height: 313px;
+  }
+
+  .repairs-section__introduction {
+    line-height: 28px;
+  }
+
+  .energy-inovators {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .energy-inovators__section {
+    width: 35%;
+  }
+
+  .energy-inovators__articles {
+    width: 65%;
+    align-items: stretch;
+  }
+
+  .value-section__container {
+    flex-wrap: nowrap;
+  }
+
+  .testimnial-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .testimnial-slider__bottom-section .chevrons {
+    gap: 16px;
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+
+  /* Styles for large desktops and wide screens */
+}
