@@ -55,8 +55,8 @@
   --energy-bg: #ffbb1c14;
 
   /* 🌟 Responsive Font Scaling */
-  --font-size-responsive-heading: clamp(1.8rem, 4vw, 3.6rem);
-  --font-size-responsive-brief: clamp(1rem, 2vw, 1.25rem);
+  --font-size-responsive-heading: clamp(1.8rem, 3vw, 3.6rem);
+  --font-size-responsive-brief: clamp(1rem, 1vw, 1.25rem);
 
   /* 🌟 Borders & Lines & shadows */
   --border-primary: #B3BDC7;
